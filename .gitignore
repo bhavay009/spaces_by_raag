@@ -1,0 +1,8 @@
+node_modules
+.next
+.next-build
+.DS_Store
+.env*.local
+
+# local harness config (machine-specific paths)
+.claude/
