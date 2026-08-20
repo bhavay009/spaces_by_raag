@@ -31,7 +31,26 @@ body { background: var(--color-cream); color: var(--color-espresso); font-family
 .kenburns { animation: kenburns 24s ease-out forwards; }
 
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.marquee { animation: marquee 38s linear infinite; }
+.marquee { animation: marquee 46s linear infinite; }
+
+/* Feathered edges so the strip reads as continuous rather than a loop being
+   clipped by the viewport. The mask sits on a STATIC wrapper — putting it on
+   the animated element would drag the fade along with the content. */
+.strip-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%);
+}
+
+/* Hovering holds it still long enough to read. */
+.strip:hover .marquee { animation-play-state: paused; }
+
+/* Hover cannot pause anything on a touchscreen. Stopping the strip is NOT the
+   answer though — the four items measure ~875px against a 375px screen, so a
+   static strip just clips three of them. It keeps scrolling on mobile (which is
+   what the brief asked for), only faster, so the full cycle comes round sooner. */
+@media (max-width: 639px) {
+  .marquee { animation-duration: 26s; }
+}
 
 @keyframes riseIn { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
 .rise { opacity: 0; animation: riseIn 1.15s cubic-bezier(.22,.68,0,1) forwards; }

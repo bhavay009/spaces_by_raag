@@ -1,4 +1,9 @@
 import Image from "next/image";
+
+// The footer prints the current year. Without this the page is rendered once at
+// build time and would still claim 2026 well into 2027.
+export const revalidate = 86400;
+
 import Header from "@/components/Header";
 import Services from "@/components/Services";
 import Work from "@/components/Work";
@@ -108,20 +113,25 @@ export default function Home() {
         </section>
 
         {/* ————————————————— BRAND STRIP ————————————————— */}
-        <section aria-label="What we do" className="relative overflow-hidden bg-espresso py-6">
-          <div className="flex w-max marquee">
-            {[0, 1].map((dup) => (
-              <ul key={dup} className="flex shrink-0 items-center" aria-hidden={dup === 1}>
-                {strip.map((item) => (
-                  <li key={item} className="flex items-center">
-                    <span className="tracked-sm px-9 text-[10.5px] whitespace-nowrap text-cream/75 md:px-14 md:text-[11.5px]">
-                      {item}
-                    </span>
-                    <span className="h-1 w-1 rotate-45 bg-bronze/70" />
-                  </li>
-                ))}
-              </ul>
-            ))}
+        <section
+          aria-label="What we do"
+          className="strip relative overflow-hidden border-y border-cream/10 bg-espresso py-6"
+        >
+          <div className="strip-mask">
+            <div className="flex w-max marquee">
+              {[0, 1].map((dup) => (
+                <ul key={dup} className="flex shrink-0 items-center" aria-hidden={dup === 1}>
+                  {strip.map((item) => (
+                    <li key={item} className="flex items-center">
+                      <span className="tracked-hero px-10 text-[10px] whitespace-nowrap text-cream/80 transition-colors duration-500 md:px-16 md:text-[11px]">
+                        {item}
+                      </span>
+                      <span className="h-[3px] w-[3px] rotate-45 bg-bronze/80" />
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -150,9 +160,9 @@ export default function Home() {
 
               <div className="mt-9 max-w-xl space-y-5 text-[15px] leading-[1.85] text-espresso/72 md:text-[16.5px]">
                 <p>
-                  Spaces by Raag is a boutique interior design studio crafting timeless
-                  residential and boutique commercial spaces defined by quiet luxury and
-                  thoughtful functionality.
+                  Spaces by Raag is a boutique interior design studio working across Gurgaon,
+                  Delhi, Noida and Faridabad — crafting timeless residential and boutique
+                  commercial spaces defined by quiet luxury and thoughtful functionality.
                 </p>
                 <p>
                   Every project is approached with meticulous attention to detail — and carried

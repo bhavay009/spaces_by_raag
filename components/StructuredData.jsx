@@ -8,6 +8,7 @@ export default function StructuredData() {
   const data = {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
+    "@id": `${site.url}/#studio`,
     additionalType: "https://en.wikipedia.org/wiki/Interior_design",
     name: site.name,
     description:
@@ -15,7 +16,12 @@ export default function StructuredData() {
     url: site.url,
     telephone: site.phone,
     email: site.email,
-    image: `${site.url}/images/hero-facade.jpg`,
+    image: [
+      `${site.url}/images/hero-facade.jpg`,
+      `${site.url}/images/m3m-1.jpg`,
+      `${site.url}/images/aavaas-1.jpg`,
+      `${site.url}/images/facade-1.jpg`,
+    ],
     priceRange: "₹₹₹₹",
     address: { "@type": "PostalAddress", addressRegion: "Delhi NCR", addressCountry: "IN" },
     areaServed: ["Gurgaon", "Delhi", "Noida", "Faridabad", "Delhi NCR", "North India"].map(
