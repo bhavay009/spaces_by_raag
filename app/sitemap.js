@@ -1,3 +1,12 @@
+import { site } from "@/lib/site";
+
 export default function sitemap() {
-  return [{ url: "https://spacesbyraag.com", lastModified: new Date(), changeFrequency: "monthly", priority: 1 }];
+  return [
+    {
+      url: site.url,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1,
+    },
+  ];
 }

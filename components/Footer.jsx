@@ -1,4 +1,4 @@
-import { site } from "@/lib/site";
+import { site, whatsappUrl } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -43,6 +43,14 @@ export default function Footer() {
                 className="group mt-3 inline-flex min-h-11 items-center text-[15px] text-cream/85 transition-colors duration-400 hover:text-bronze-ink"
               >
                 {site.instagramHandle}
+              </a>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex min-h-11 items-center text-[15px] text-cream/85 transition-colors duration-400 hover:text-bronze-ink"
+              >
+                WhatsApp
               </a>
             </div>
           </div>
