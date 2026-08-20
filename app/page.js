@@ -126,7 +126,7 @@ export default function Home() {
         </section>
 
         {/* ————————————— ABOUT + CREDENTIALS ————————————— */}
-        <section id="about" className="relative bg-cream px-6 py-20 md:px-12 md:py-32">
+        <section id="about" className="grain-soft relative bg-cream px-6 py-20 md:px-12 md:py-32">
           <div className="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-12 lg:gap-20">
             <div className="lg:col-span-5">
               <p className="tracked text-[9px] text-bronze-deep md:text-[10px]">The Studio</p>

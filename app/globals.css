@@ -43,7 +43,7 @@ body { background: var(--color-cream); color: var(--color-espresso); font-family
   .kenburns, .marquee, .rise, .line-grow { animation: none !important; opacity: 1 !important; transform: none !important; }
 }
 
-/* Fine film grain — echoes the brand deck's paper texture. Hero only, very low opacity. */
+/* Fine film grain over the hero photograph. */
 .grain::after {
   content: "";
   position: absolute;
@@ -84,3 +84,19 @@ body { background: var(--color-cream); color: var(--color-espresso); font-family
   .svc-grid > li:nth-child(3n + 1) { padding-left: 0; }
   .svc-grid > li:nth-child(3n)     { padding-right: 0; }
 }
+
+/* Paper tooth on the light sections. Scoped per-section and multiplied, so it
+   darkens the cream very slightly rather than blending against the page
+   composite — a fixed overlay layer flattens the hero photograph to black. */
+.grain-soft { position: relative; }
+.grain-soft::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.grain-soft > * { position: relative; z-index: 1; }

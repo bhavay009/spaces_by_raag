@@ -33,7 +33,9 @@ export default function StructuredData() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ // JSON.stringify does not escape "</script>"; harmless today (all values
+        // are developer-authored) but keeps this safe if it ever goes dynamic.
+        __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
     />
   );
 }

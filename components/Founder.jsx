@@ -3,9 +3,9 @@ import Reveal from "./Reveal";
 
 export default function Founder() {
   return (
-    <section id="founder" className="scroll-mt-24 bg-cream px-6 py-20 md:px-12 md:py-32">
+    <section id="founder" className="grain-soft scroll-mt-24 bg-cream px-6 py-20 md:px-12 md:py-32">
       <div className="mx-auto grid max-w-[1400px] items-center gap-14 lg:grid-cols-12 lg:gap-20">
-        <Reveal className="lg:col-span-5">
+        <Reveal className="lg:order-2 lg:col-span-5">
           <div className="group relative aspect-[4/5] w-full overflow-hidden bg-espresso shadow-[0_18px_50px_-30px_rgba(26,17,9,.55)]">
             <Image
               src="/images/founder-ridham.jpg"
@@ -18,7 +18,7 @@ export default function Founder() {
           </div>
         </Reveal>
 
-        <Reveal delay={120} className="lg:col-span-7">
+        <Reveal delay={120} className="lg:order-1 lg:col-span-7">
           <p className="tracked text-[9px] text-bronze-deep md:text-[10px]">The Founder</p>
           <h2 className="font-display mt-6 text-[clamp(2.1rem,4.6vw,3.4rem)] leading-[1.12] tracking-[-0.015em] text-espresso">
             Ridham Girotra

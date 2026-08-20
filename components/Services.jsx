@@ -1,14 +1,13 @@
-import Image from "next/image";
 import Reveal from "./Reveal";
 import { services } from "@/lib/site";
 
 export default function Services() {
   return (
-    <section id="services" className="scroll-mt-24 bg-shell px-6 py-20 md:px-12 md:py-32">
+    <section id="services" className="grain-soft scroll-mt-24 border-t border-espresso/10 bg-shell px-6 py-20 md:px-12 md:py-32">
       <div className="mx-auto max-w-[1400px]">
         {/* Intro — three beats on one baseline: statement, plate, supporting line. */}
         <Reveal className="grid gap-y-9 lg:grid-cols-12 lg:items-end lg:gap-x-10">
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-7">
             <p className="tracked text-[9px] text-bronze-deep md:text-[10px]">What We Do</p>
             <h2 className="font-display mt-7 text-[clamp(2.05rem,4.6vw,3.6rem)] leading-[1.06] tracking-[-0.021em] text-espresso">
               Design and delivery,
@@ -17,23 +16,7 @@ export default function Services() {
             </h2>
           </div>
 
-          {/* One architectural note, set at the headline's height so it costs no
-              vertical space. Desktop only — on narrow screens the section stays
-              purely typographic rather than stacking another image. */}
-          <figure className="hidden lg:col-span-2 lg:col-start-8 lg:block">
-            <div className="relative h-[15rem] w-full overflow-hidden bg-sand">
-              <Image
-                src="/images/detail-facade.jpg"
-                alt="Facade detail — vertical timber fins against textured stone, grazed by warm architectural lighting"
-                fill
-                loading="lazy"
-                sizes="18vw"
-                className="object-cover"
-              />
-            </div>
-          </figure>
-
-          <p className="max-w-sm text-[15px] leading-[1.85] text-espresso/70 lg:col-span-3 lg:col-start-10 lg:max-w-none lg:pb-1.5">
+          <p className="max-w-sm text-[15px] leading-[1.85] text-espresso/70 lg:col-span-4 lg:col-start-9 lg:max-w-none lg:pb-1.5">
             A single team from first concept through final handover — so detail
             survives the journey from drawing to site.
           </p>

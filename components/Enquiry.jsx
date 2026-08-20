@@ -45,7 +45,7 @@ export default function Enquiry() {
       <section id="enquiry" className="scroll-mt-24 bg-espresso px-6 py-32 md:px-12 md:py-44">
         <div className="mx-auto max-w-xl text-center">
           <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-bronze/50">
-            <svg viewBox="0 0 24 24" className="h-6 w-6 stroke-bronze" fill="none" strokeWidth="1.4">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" className="h-6 w-6 stroke-bronze" fill="none" strokeWidth="1.4">
               <path d="m5 12.5 4.5 4.5L19 7.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </span>
@@ -83,10 +83,10 @@ export default function Enquiry() {
           </p>
 
           <div className="mt-12 space-y-4 border-t border-cream/12 pt-8">
-            <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="tracked-sm inline-flex min-h-11 items-center text-[10px] text-cream/70 transition-colors duration-400 hover:text-bronze-ink">
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="tracked-sm flex min-h-11 w-fit items-center text-[10px] text-cream/70 transition-colors duration-400 hover:text-bronze-ink">
               {site.phone}
             </a>
-            <a href={`mailto:${site.email}`} className="tracked-sm inline-flex min-h-11 items-center text-[10px] text-cream/70 transition-colors duration-400 hover:text-bronze-ink">
+            <a href={`mailto:${site.email}`} className="tracked-sm flex min-h-11 w-fit items-center text-[10px] text-cream/70 transition-colors duration-400 hover:text-bronze-ink">
               {site.email}
             </a>
           </div>
@@ -102,26 +102,42 @@ export default function Enquiry() {
           <div className="grid gap-x-10 gap-y-9 sm:grid-cols-2">
             <div>
               <label className={label} htmlFor="name">Name *</label>
-              <input id="name" name="name" className={field} placeholder="Your full name" autoComplete="name" />
-              {errors.name && <p className="mt-2 text-[12px] text-[#E8A87C]">{errors.name}</p>}
+              <input id="name" name="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined} className={field} placeholder="Your full name" autoComplete="name" />
+              {errors.name && (
+                <p id="name-error" role="alert" className="mt-2 text-[12px] text-[#E8A87C]">
+                  {errors.name}
+                </p>
+              )}
             </div>
 
             <div>
               <label className={label} htmlFor="phone">Phone Number *</label>
-              <input id="phone" name="phone" type="tel" className={field} placeholder="+91" autoComplete="tel" />
-              {errors.phone && <p className="mt-2 text-[12px] text-[#E8A87C]">{errors.phone}</p>}
+              <input id="phone" name="phone" aria-invalid={!!errors.phone} aria-describedby={errors.phone ? "phone-error" : undefined} type="tel" className={field} placeholder="+91" autoComplete="tel" />
+              {errors.phone && (
+                <p id="phone-error" role="alert" className="mt-2 text-[12px] text-[#E8A87C]">
+                  {errors.phone}
+                </p>
+              )}
             </div>
 
             <div>
               <label className={label} htmlFor="email">Email Address</label>
-              <input id="email" name="email" type="email" className={field} placeholder="Optional" autoComplete="email" />
-              {errors.email && <p className="mt-2 text-[12px] text-[#E8A87C]">{errors.email}</p>}
+              <input id="email" name="email" aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} type="email" className={field} placeholder="Optional" autoComplete="email" />
+              {errors.email && (
+                <p id="email-error" role="alert" className="mt-2 text-[12px] text-[#E8A87C]">
+                  {errors.email}
+                </p>
+              )}
             </div>
 
             <div>
               <label className={label} htmlFor="location">Project Location *</label>
-              <input id="location" name="location" className={field} placeholder="Gurgaon, Delhi, Noida…" />
-              {errors.location && <p className="mt-2 text-[12px] text-[#E8A87C]">{errors.location}</p>}
+              <input id="location" name="location" aria-invalid={!!errors.location} aria-describedby={errors.location ? "location-error" : undefined} className={field} placeholder="Gurgaon, Delhi, Noida…" />
+              {errors.location && (
+                <p id="location-error" role="alert" className="mt-2 text-[12px] text-[#E8A87C]">
+                  {errors.location}
+                </p>
+              )}
             </div>
 
             <div className="sm:col-span-2">
@@ -147,7 +163,7 @@ export default function Enquiry() {
           </div>
 
           {state === "error" && (
-            <p className="mt-7 text-[13.5px] text-[#E8A87C]">{message}</p>
+            <p role="alert" className="mt-7 text-[13.5px] text-[#E8A87C]">{message}</p>
           )}
 
           <button

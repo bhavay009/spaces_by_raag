@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { nav } from "@/lib/site";
 
 export default function Header() {
@@ -9,6 +9,20 @@ export default function Header() {
   // the drawer is cream, so the bar must solidify with it — otherwise a
   // transparent header floats above an opaque panel.
   const opaque = solid || open;
+  const toggleRef = useRef(null);
+
+  // Escape closes the drawer and returns focus to the control that opened it.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 40);
@@ -24,7 +38,7 @@ export default function Header() {
           : "bg-transparent py-7"
       }`}
     >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-12">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-12 lg:grid lg:grid-cols-[1fr_auto_1fr]">
         <a href="#top" className="group flex min-h-11 flex-col justify-center leading-none">
           <span
             className={`tracked text-[9px] transition-colors duration-500 ${
@@ -42,7 +56,7 @@ export default function Header() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-10 lg:flex">
+        <nav className="hidden items-center justify-center gap-10 lg:flex">
           {nav.map((n) => (
             <a
               key={n.href}
@@ -61,7 +75,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 lg:justify-self-end">
           <a
             href="#enquiry"
             className={`tracked-sm hidden border px-7 py-3.5 text-[10px] transition-all duration-500 md:inline-block ${
@@ -73,8 +87,11 @@ export default function Header() {
           </a>
 
           <button
+            ref={toggleRef}
             onClick={() => setOpen((v) => !v)}
-            aria-label="Menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
             className="-mr-2 flex h-11 w-11 flex-col items-center justify-center gap-[5px] lg:hidden"
           >
             <span className={`h-px w-6 transition-all duration-400 ${opaque ? "bg-espresso" : "bg-cream"} ${open ? "translate-y-[6px] rotate-45" : ""}`} />
@@ -86,6 +103,9 @@ export default function Header() {
 
       {/* mobile drawer */}
       <div
+        id="mobile-nav"
+        inert={!open || undefined}
+        aria-hidden={!open}
         className={`overflow-hidden bg-cream transition-[max-height,opacity] duration-700 ease-out lg:hidden ${
           open ? "max-h-[580px] opacity-100" : "max-h-0 opacity-0"
         }`}

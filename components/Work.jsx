@@ -15,11 +15,11 @@ function Meta({ label, value }) {
 
 export default function Work() {
   return (
-    <section id="work" className="scroll-mt-24 bg-cream px-6 py-20 md:px-12 md:py-32">
+    <section id="work" className="grain-soft scroll-mt-24 border-t border-espresso/10 bg-cream px-6 py-20 md:px-12 md:py-32">
       <div className="mx-auto max-w-[1400px]">
         <Reveal className="max-w-2xl">
           <p className="tracked text-[9px] text-bronze-deep md:text-[10px]">Selected Work</p>
-          <h2 className="font-display mt-6 text-[clamp(2.1rem,4.6vw,3.6rem)] leading-[1.12] tracking-[-0.015em] text-espresso">
+          <h2 className="font-display mt-6 text-[clamp(2.4rem,5.6vw,4.6rem)] leading-[1.06] tracking-[-0.022em] text-espresso">
             A few of the spaces
             <br />
             <span className="italic text-cognac">we&rsquo;ve shaped.</span>

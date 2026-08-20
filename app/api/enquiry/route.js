@@ -14,14 +14,39 @@ function rateLimited(ip) {
   return list.length > 10; // shared mobile IPs (CGNAT) are common in India
 }
 
+/**
+ * The leftmost x-forwarded-for entry is supplied by the caller and can be
+ * forged on every request, which defeats the limiter entirely. Prefer the
+ * headers the platform itself appends; fall back to the LAST xff hop, which is
+ * the one added closest to us.
+ */
+function clientIp(req) {
+  const vercel = req.headers.get("x-vercel-forwarded-for");
+  if (vercel) return vercel.split(",").pop().trim();
+  const real = req.headers.get("x-real-ip");
+  if (real) return real.trim();
+  const xff = req.headers.get("x-forwarded-for");
+  if (xff) return xff.split(",").pop().trim();
+  return "local";
+}
+
+// Generous ceilings — a real enquiry never approaches these. They exist so the
+// endpoint cannot be used to pump unbounded content at the studio's mailbox.
+const LIMITS = { name: 120, phone: 40, email: 200, location: 160, budget: 40, details: 4000 };
+
 const esc = (s = "") =>
   String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 export async function POST(req) {
   try {
-    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
+    const ip = clientIp(req);
     if (rateLimited(ip)) {
       return Response.json({ error: "Too many enquiries. Please try again shortly." }, { status: 429 });
+    }
+
+    const declared = Number(req.headers.get("content-length") || 0);
+    if (declared > 20_000) {
+      return Response.json({ error: "That message is too long." }, { status: 413 });
     }
 
     const body = await req.json();
@@ -33,7 +58,18 @@ export async function POST(req) {
     if (!name?.trim() || !phone?.trim() || !location?.trim()) {
       return Response.json({ error: "Please complete the required fields." }, { status: 400 });
     }
-    if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+
+    // The client's checks are UX only; this is the authoritative boundary.
+    for (const [field, max] of Object.entries(LIMITS)) {
+      if (typeof body[field] === "string" && body[field].length > max) {
+        return Response.json({ error: "One of those fields is too long." }, { status: 400 });
+      }
+    }
+    if (!/^[\d\s+()-]{7,}$/.test(phone)) {
+      return Response.json({ error: "Please check the phone number." }, { status: 400 });
+    }
+    // Commas would be parsed as a second Reply-To address by nodemailer.
+    if (email && (!/^[^\s,<>]+@[^\s,<>]+\.[^\s,<>]+$/.test(email) || email.includes(","))) {
       return Response.json({ error: "Please check the email address." }, { status: 400 });
     }
 

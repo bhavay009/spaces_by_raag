@@ -7,7 +7,9 @@ import { site } from "@/lib/site";
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
-  axes: ["SOFT", "WONK", "opsz"],
+  // only opsz is used (optical sizing is applied automatically by the
+  // browser); SOFT and WONK must be set explicitly and never are.
+  axes: ["opsz"],
   display: "swap",
 });
 
@@ -22,7 +24,7 @@ export const metadata = {
   alternates: { canonical: "/" },
   title: "Spaces by Raag — Luxury Interior Designers in Gurgaon & Delhi NCR",
   description:
-    "Spaces by Raag is a boutique interior design studio creating timeless, quietly luxurious residences across Gurgaon, Delhi NCR and North India — with end-to-end turnkey execution.",
+    "Boutique interior design studio creating timeless, quietly luxurious homes across Gurgaon, Delhi NCR and North India, with end-to-end turnkey execution.",
   keywords: [
     "luxury interior designers Gurgaon",
     "interior designers Delhi NCR",
@@ -37,7 +39,10 @@ export const metadata = {
     images: ["/images/hero-facade.jpg"],
     type: "website",
   },
-  robots: { index: true, follow: true },
+  // Indexing only switches on once NEXT_PUBLIC_SITE_URL names the real domain.
+  // Otherwise Google indexes the vercel.app placeholder and the eventual move
+  // costs a 301 migration and a ranking dip.
+  robots: { index: !!process.env.NEXT_PUBLIC_SITE_URL, follow: true },
   // Set NEXT_PUBLIC_GSC_VERIFICATION to the token Search Console gives you.
   ...(process.env.NEXT_PUBLIC_GSC_VERIFICATION
     ? { verification: { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } }
