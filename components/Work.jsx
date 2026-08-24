@@ -80,6 +80,7 @@ export default function Work() {
                             fill
                             loading="lazy"
                             sizes="(max-width: 640px) 31vw, (max-width: 1024px) 30vw, 13vw"
+                            quality={90}
                             className="object-cover transition-transform duration-[1.6s] ease-[cubic-bezier(.22,.68,0,1)] group-hover/thumb:scale-[1.07]"
                           />
                         </div>

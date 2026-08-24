@@ -13,6 +13,7 @@ export default function Enquiry() {
 
   async function onSubmit(e) {
     e.preventDefault();
+    if (state === "sending") return;
     const fd = new FormData(e.currentTarget);
     const data = Object.fromEntries(fd.entries());
 

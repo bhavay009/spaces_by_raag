@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { nav, site } from "@/lib/site";
 
@@ -39,21 +40,35 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 md:px-12 lg:grid lg:grid-cols-[1fr_auto_1fr]">
-        <a href="#top" className="group flex min-h-11 flex-col justify-center leading-none">
-          <span
-            className={`tracked text-[9px] transition-colors duration-500 ${
-              opaque ? "text-cognac/70" : "text-cream/70"
+        <a
+          href="#top"
+          aria-label="Spaces by Raag — back to top"
+          className="group relative flex min-h-11 items-center"
+        >
+          {/* The client's lockup, keyed off its flat background and recoloured.
+              Two files rather than one because a raster cannot be tinted in CSS:
+              white over the hero, espresso once the bar turns cream. */}
+          <Image
+            src="/images/logo-light.png"
+            alt="Spaces by Raag"
+            width={318}
+            height={271}
+            priority
+            className={`h-11 w-auto transition-opacity duration-500 md:h-12 ${
+              opaque ? "opacity-0" : "opacity-100"
             }`}
-          >
-            Spaces by
-          </span>
-          <span
-            className={`font-display text-[26px] font-semibold leading-none transition-colors duration-500 md:text-[30px] ${
-              opaque ? "text-espresso" : "text-cream"
+          />
+          <Image
+            src="/images/logo-dark.png"
+            alt=""
+            aria-hidden="true"
+            width={318}
+            height={271}
+            priority
+            className={`absolute left-0 h-11 w-auto transition-opacity duration-500 md:h-12 ${
+              opaque ? "opacity-100" : "opacity-0"
             }`}
-          >
-            Raag
-          </span>
+          />
         </a>
 
         <nav className="hidden items-center justify-center gap-10 lg:flex">
@@ -80,11 +95,26 @@ export default function Header() {
               only at the foot of the page. */}
           <a
             href={`tel:${site.phone.replace(/\s/g, "")}`}
-            className={`tracked-sm hidden text-[10px] transition-colors duration-500 xl:inline-block ${
+            aria-label={`Call ${site.phone}`}
+            className={`tracked-sm group hidden items-center gap-2 text-[10px] transition-colors duration-500 xl:inline-flex ${
               opaque ? "text-espresso/70 hover:text-espresso" : "text-cream/80 hover:text-cream"
             }`}
           >
-            {site.phone}
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              className="shrink-0 opacity-70 transition-opacity duration-500 group-hover:opacity-100"
+            >
+              <path d="M14.05 6a4.5 4.5 0 0 1 3.95 3.95M21.7 16.42v2.4a1.9 1.9 0 0 1-2.07 1.9 18.8 18.8 0 0 1-8.2-2.92 18.5 18.5 0 0 1-5.7-5.7A18.8 18.8 0 0 1 2.8 3.87 1.9 1.9 0 0 1 4.69 1.8h2.4a1.9 1.9 0 0 1 1.9 1.64c.11.86.32 1.7.62 2.5a1.9 1.9 0 0 1-.43 2.01l-1.02 1.02a15.2 15.2 0 0 0 5.7 5.7l1.02-1.02a1.9 1.9 0 0 1 2-.43c.81.3 1.65.51 2.51.62a1.9 1.9 0 0 1 1.64 1.93Z" />
+            </svg>
+            <span>{site.phone}</span>
           </a>
           <a
             href="#enquiry"
@@ -142,8 +172,22 @@ export default function Header() {
           <div className="mt-6 flex flex-col gap-1 border-t border-espresso/10 pt-5">
             <a
               href={`tel:${site.phone.replace(/\s/g, "")}`}
-              className="tracked-sm flex min-h-11 items-center text-[10px] text-espresso/70"
+              className="tracked-sm flex min-h-11 items-center gap-2.5 text-[10px] text-espresso/70"
             >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                className="shrink-0 opacity-70"
+              >
+                <path d="M14.05 6a4.5 4.5 0 0 1 3.95 3.95M21.7 16.42v2.4a1.9 1.9 0 0 1-2.07 1.9 18.8 18.8 0 0 1-8.2-2.92 18.5 18.5 0 0 1-5.7-5.7A18.8 18.8 0 0 1 2.8 3.87 1.9 1.9 0 0 1 4.69 1.8h2.4a1.9 1.9 0 0 1 1.9 1.64c.11.86.32 1.7.62 2.5a1.9 1.9 0 0 1-.43 2.01l-1.02 1.02a15.2 15.2 0 0 0 5.7 5.7l1.02-1.02a1.9 1.9 0 0 1 2-.43c.81.3 1.65.51 2.51.62a1.9 1.9 0 0 1 1.64 1.93Z" />
+              </svg>
               {site.phone}
             </a>
             <a

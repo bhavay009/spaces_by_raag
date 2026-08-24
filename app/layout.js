@@ -10,6 +10,10 @@ const fraunces = Fraunces({
   // only opsz is used (optical sizing is applied automatically by the
   // browser); SOFT and WONK must be set explicitly and never are.
   axes: ["opsz"],
+  // Both styles: the hero headline sets its second line in italic, and
+  // without this Next only ships the upright face, so the browser fakes
+  // the slant with a synthetic oblique instead of Fraunces' real italic.
+  style: ["normal", "italic"],
   display: "swap",
 });
 

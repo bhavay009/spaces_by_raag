@@ -10,14 +10,12 @@ import Work from "@/components/Work";
 import Enquiry from "@/components/Enquiry";
 import Founder from "@/components/Founder";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import { site, strip, credentials } from "@/lib/site";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <WhatsAppButton />
 
       <main id="top">
         {/* ————————————————————— HERO ————————————————————— */}
@@ -57,12 +55,12 @@ export default function Home() {
                 </span>
                 <span
                   aria-hidden
-                  className="rise font-display block text-[clamp(2.4rem,6vw,5rem)] font-normal leading-[1.04] tracking-[-0.022em] text-cream [text-shadow:0_8px_60px_rgba(26,17,9,.75)]"
+                  className="rise font-display block text-[clamp(2.15rem,5.2vw,4.35rem)] font-normal leading-[1.08] tracking-[-0.015em] text-cream [text-shadow:0_8px_60px_rgba(26,17,9,.75)]"
                   style={{ animationDelay: ".55s" }}
                 >
                   Spaces, thoughtfully designed.
                   <br />
-                  <span className="italic">Beautifully executed.</span>
+                  <span className="font-light italic">Beautifully executed.</span>
                 </span>
               </h1>
 
@@ -72,7 +70,7 @@ export default function Home() {
                   style={{ animationDelay: ".95s" }}
                 >
                   <span className="hidden h-px w-10 shrink-0 bg-gradient-to-r from-bronze to-bronze/0 md:block" />
-                  <p className="tracked-hero text-[9px] text-cream/70 md:text-[10px] [text-shadow:0_2px_18px_rgba(26,17,9,.95)]">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-cream/85 md:text-[13px] md:tracking-[0.22em] [text-shadow:0_2px_18px_rgba(26,17,9,.95)]">
                     Spaces by Raag
                   </p>
                 </div>

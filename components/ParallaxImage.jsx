@@ -106,6 +106,7 @@ export default function ParallaxImage({ src, alt, sizes, strength = 18 }) {
           fill
           loading="lazy"
           sizes={sizes}
+          quality={90}
           className="object-cover transition-transform duration-[2s] ease-[cubic-bezier(.22,.68,0,1)] group-hover:scale-[1.045]"
         />
       </div>
