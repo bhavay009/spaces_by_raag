@@ -41,23 +41,6 @@ export default function Work() {
                     alt={p.alt}
                     sizes="(max-width: 1024px) 100vw, 58vw"
                   />
-                  {/* supporting strip */}
-                  {rest.length > 0 && (
-                    <div className="mt-3 grid grid-cols-3 gap-3">
-                      {rest.slice(0, 3).map((img, k) => (
-                        <div key={img} className="group/thumb relative aspect-[4/3] overflow-hidden bg-sand">
-                          <Image
-                            src={`/images/${img}.jpg`}
-                            alt={`${p.name} — interior detail ${k + 2}, ${p.location}`}
-                            fill
-                            loading="lazy"
-                            sizes="(max-width: 640px) 31vw, (max-width: 1024px) 30vw, 19vw"
-                            className="object-cover transition-transform duration-[1.6s] ease-[cubic-bezier(.22,.68,0,1)] group-hover/thumb:scale-[1.07]"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
                 </Reveal>
 
                 {/* text */}
@@ -82,6 +65,27 @@ export default function Work() {
                     <Meta label="Area" value={p.area} />
                     <Meta label="Project Value" value={p.value} />
                   </dl>
+
+                  {/* Supporting frames sit under the copy rather than beneath the
+                      lead image. The text column ran ~350px shorter than the image
+                      column, so this fills existing dead space instead of adding
+                      height — the row is now set by the lead image alone. */}
+                  {rest.length > 0 && (
+                    <div className="mt-8 grid grid-cols-3 gap-3">
+                      {rest.slice(0, 3).map((img, k) => (
+                        <div key={img} className="group/thumb relative aspect-[4/3] overflow-hidden bg-sand">
+                          <Image
+                            src={`/images/${img}.jpg`}
+                            alt={`${p.name} — interior detail ${k + 2}, ${p.location}`}
+                            fill
+                            loading="lazy"
+                            sizes="(max-width: 640px) 31vw, (max-width: 1024px) 30vw, 13vw"
+                            className="object-cover transition-transform duration-[1.6s] ease-[cubic-bezier(.22,.68,0,1)] group-hover/thumb:scale-[1.07]"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </Reveal>
               </article>
             );
