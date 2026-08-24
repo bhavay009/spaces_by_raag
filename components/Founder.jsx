@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 
 export default function Founder() {
   return (
-    <section id="founder" className="grain-soft scroll-mt-24 bg-cream px-6 py-20 md:px-12 md:py-32">
+    <section id="founder" className="grain-soft scroll-mt-24 bg-cream px-6 py-16 md:px-12 md:py-24">
       <div className="mx-auto grid max-w-[1400px] items-center gap-14 lg:grid-cols-12 lg:gap-20">
         <Reveal className="lg:order-2 lg:col-span-5">
           <div className="group relative aspect-[4/5] w-full overflow-hidden bg-espresso shadow-[0_18px_50px_-30px_rgba(26,17,9,.55)]">

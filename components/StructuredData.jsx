@@ -12,7 +12,7 @@ export default function StructuredData() {
     additionalType: "https://en.wikipedia.org/wiki/Interior_design",
     name: site.name,
     description:
-      "Boutique interior design studio creating timeless, quietly luxurious residences across Gurgaon, Delhi NCR and North India, with end-to-end turnkey execution.",
+      "Boutique interior design studio creating timeless, considered residences across Gurgaon, Delhi NCR and North India, with end-to-end turnkey execution.",
     url: site.url,
     telephone: site.phone,
     email: site.email,

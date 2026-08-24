@@ -24,7 +24,7 @@ export const metadata = {
   alternates: { canonical: "/" },
   title: "Spaces by Raag — Luxury Interior Designers in Gurgaon & Delhi NCR",
   description:
-    "Boutique interior design studio creating timeless, quietly luxurious homes across Gurgaon, Delhi NCR and North India, with end-to-end turnkey execution.",
+    "Boutique interior design studio creating timeless, considered homes across Gurgaon, Delhi NCR and North India, with end-to-end turnkey execution.",
   keywords: [
     "luxury interior designers Gurgaon",
     "interior designers Delhi NCR",
@@ -33,9 +33,9 @@ export const metadata = {
     "premium interior design Delhi",
   ],
   openGraph: {
-    title: "Spaces by Raag — Where Form Finds Feeling",
+    title: "Spaces by Raag — Designed Homes. Intentional Living.",
     description:
-      "Timeless, thoughtful interiors and end-to-end execution for premium residences across Delhi NCR.",
+      "Designed homes, intentional living. Timeless interiors and end-to-end execution across Delhi NCR.",
     images: ["/images/hero-facade.jpg"],
     type: "website",
   },

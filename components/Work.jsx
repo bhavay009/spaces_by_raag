@@ -15,7 +15,7 @@ function Meta({ label, value }) {
 
 export default function Work() {
   return (
-    <section id="work" className="grain-soft scroll-mt-24 border-t border-espresso/10 bg-cream px-6 py-20 md:px-12 md:py-32">
+    <section id="work" className="grain-soft scroll-mt-24 border-t border-espresso/10 bg-cream px-6 py-16 md:px-12 md:py-24">
       <div className="mx-auto max-w-[1400px]">
         <Reveal className="max-w-2xl">
           <p className="tracked text-[9px] text-bronze-deep md:text-[10px]">Selected Work</p>
@@ -26,7 +26,7 @@ export default function Work() {
           </h2>
         </Reveal>
 
-        <div className="mt-20 flex flex-col gap-28 md:mt-24 md:gap-36">
+        <div className="mt-14 flex flex-col gap-20 md:mt-16 md:gap-24">
           {projects.map((p, i) => {
             const flip = i % 2 === 1;
             const [lead, ...rest] = p.images;

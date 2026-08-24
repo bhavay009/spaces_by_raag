@@ -49,34 +49,31 @@ export default function Home() {
 
             {/* headline block, bottom-weighted */}
             <div className="mt-auto pb-14 md:pb-20">
-              <h1 className="max-w-4xl">
+              {/* The tagline is the hero statement now, not a caption under the
+                  wordmark — the brand name already sits in the header. */}
+              <h1 className="max-w-[19ch]">
                 <span className="sr-only">
                   Spaces by Raag — luxury interior design and turnkey execution in Gurgaon and Delhi NCR
                 </span>
                 <span
                   aria-hidden
-                  className="rise tracked block text-[10px] text-[#D9AF80] md:text-[12px] [text-shadow:0_2px_18px_rgba(26,17,9,.95)]"
+                  className="rise font-display block text-[clamp(2.4rem,6vw,5rem)] font-normal leading-[1.04] tracking-[-0.022em] text-cream [text-shadow:0_8px_60px_rgba(26,17,9,.75)]"
                   style={{ animationDelay: ".55s" }}
                 >
-                  Spaces by
-                </span>
-                <span
-                  aria-hidden
-                  className="rise font-display mt-2 block text-[clamp(4.2rem,15vw,12.5rem)] font-normal leading-[0.85] tracking-[-0.02em] text-cream [text-shadow:0_8px_60px_rgba(26,17,9,.7)]"
-                  style={{ animationDelay: ".7s" }}
-                >
-                  Raag
+                  Spaces, thoughtfully designed.
+                  <br />
+                  <span className="italic">Beautifully executed.</span>
                 </span>
               </h1>
 
-              <div className="mt-9 flex flex-col gap-9 md:mt-12 md:flex-row md:items-end md:justify-between md:gap-16">
+              <div className="mt-10 flex flex-col gap-9 md:mt-12 md:flex-row md:items-end md:justify-between md:gap-16">
                 <div
-                  className="rise flex max-w-xl items-center gap-5 md:max-w-2xl"
+                  className="rise flex items-center gap-5"
                   style={{ animationDelay: ".95s" }}
                 >
                   <span className="hidden h-px w-10 shrink-0 bg-gradient-to-r from-bronze to-bronze/0 md:block" />
-                  <p className="tracked-hero text-[10px] leading-[2.1] text-cream/85 md:text-[11.5px] [text-shadow:0_2px_18px_rgba(26,17,9,.95)]">
-                    {site.tagline}
+                  <p className="tracked-hero text-[9px] text-cream/70 md:text-[10px] [text-shadow:0_2px_18px_rgba(26,17,9,.95)]">
+                    Spaces by Raag
                   </p>
                 </div>
 
@@ -136,14 +133,14 @@ export default function Home() {
         </section>
 
         {/* ————————————— ABOUT + CREDENTIALS ————————————— */}
-        <section id="about" className="grain-soft relative bg-cream px-6 py-20 md:px-12 md:py-32">
+        <section id="about" className="grain-soft relative bg-cream px-6 py-16 md:px-12 md:py-24">
           <div className="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-12 lg:gap-20">
             <div className="lg:col-span-5">
               <p className="tracked text-[9px] text-bronze-deep md:text-[10px]">The Studio</p>
               <div className="group relative mt-10 aspect-[4/5] w-full overflow-hidden bg-sand shadow-[0_18px_50px_-30px_rgba(26,17,9,.55)]">
                 <Image
-                  src="/images/m3m-1.jpg"
-                  alt="Double-height living room with bespoke detailing and statement lighting at Residence at M3M, Gurgaon"
+                  src="/images/vilasa-1.jpg"
+                  alt="Double-height living space with woven pendant lighting and layered natural textures in a villa in Gurgaon"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover transition-transform duration-[1.8s] ease-[cubic-bezier(.22,.68,0,1)] group-hover:scale-[1.045]"
@@ -162,7 +159,7 @@ export default function Home() {
                 <p>
                   Spaces by Raag is a boutique interior design studio working across Gurgaon,
                   Delhi, Noida and Faridabad — crafting timeless residential and boutique
-                  commercial spaces defined by quiet luxury and thoughtful functionality.
+                  commercial spaces defined by considered detail and thoughtful functionality.
                 </p>
                 <p>
                   Every project is approached with meticulous attention to detail — and carried

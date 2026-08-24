@@ -68,7 +68,7 @@ export default function Enquiry() {
   }
 
   return (
-    <section id="enquiry" className="scroll-mt-24 bg-espresso px-6 py-20 md:px-12 md:py-32">
+    <section id="enquiry" className="scroll-mt-24 bg-espresso px-6 py-16 md:px-12 md:py-24">
       <div className="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-12 lg:gap-20">
         <div className="lg:col-span-5">
           <p className="tracked text-[9px] text-bronze-ink md:text-[10px]">Project Enquiry</p>

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { nav } from "@/lib/site";
+import { nav, site } from "@/lib/site";
 
 export default function Header() {
   const [solid, setSolid] = useState(false);
@@ -75,7 +75,17 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4 lg:justify-self-end">
+        <div className="flex items-center gap-5 lg:justify-self-end">
+          {/* Client asked for contact to be reachable early in the journey, not
+              only at the foot of the page. */}
+          <a
+            href={`tel:${site.phone.replace(/\s/g, "")}`}
+            className={`tracked-sm hidden text-[10px] transition-colors duration-500 xl:inline-block ${
+              opaque ? "text-espresso/70 hover:text-espresso" : "text-cream/80 hover:text-cream"
+            }`}
+          >
+            {site.phone}
+          </a>
           <a
             href="#enquiry"
             className={`tracked-sm hidden border px-7 py-3.5 text-[10px] transition-all duration-500 md:inline-block ${
@@ -128,6 +138,29 @@ export default function Header() {
           >
             Discuss Your Project
           </a>
+
+          <div className="mt-6 flex flex-col gap-1 border-t border-espresso/10 pt-5">
+            <a
+              href={`tel:${site.phone.replace(/\s/g, "")}`}
+              className="tracked-sm flex min-h-11 items-center text-[10px] text-espresso/70"
+            >
+              {site.phone}
+            </a>
+            <a
+              href={`mailto:${site.email}`}
+              className="tracked-sm flex min-h-11 items-center text-[10px] text-espresso/70"
+            >
+              {site.email}
+            </a>
+            <a
+              href={site.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tracked-sm flex min-h-11 items-center text-[10px] text-espresso/70"
+            >
+              {site.instagramHandle}
+            </a>
+          </div>
         </nav>
       </div>
     </header>
