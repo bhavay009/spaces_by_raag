@@ -93,7 +93,7 @@ export default function Enquiry() {
           </div>
         </div>
 
-        <form onSubmit={onSubmit} noValidate className="lg:col-span-7">
+        <form onSubmit={onSubmit} noValidate className="relative lg:col-span-7">
           {/* honeypot — bots fill this, humans never see it */}
           <div className="absolute left-[-9999px]" aria-hidden="true">
             <label htmlFor="company">Company</label>

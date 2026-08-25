@@ -141,22 +141,28 @@ export default function Header() {
         </div>
       </div>
 
-      {/* mobile drawer */}
+      {/* mobile drawer
+          max-h was a fixed 580px, but content ran to 649px — the extra 69px
+          (the Instagram link) was silently clipped by overflow-hidden on
+          every phone, not just small ones. Content is now ~545px after the
+          tighter spacing below; 650px keeps a real buffer without relying on
+          dvh (unsupported in some engines, where the declaration is dropped
+          entirely rather than falling back — worse than the original bug). */}
       <div
         id="mobile-nav"
         inert={!open || undefined}
         aria-hidden={!open}
         className={`overflow-hidden bg-cream transition-[max-height,opacity] duration-700 ease-out lg:hidden ${
-          open ? "max-h-[580px] opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-[650px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <nav className="flex flex-col gap-1 px-6 py-6">
+        <nav className="flex flex-col gap-0.5 px-6 py-5">
           {nav.map((n) => (
             <a
               key={n.href}
               href={n.href}
               onClick={() => setOpen(false)}
-              className="font-display border-b border-espresso/10 py-4 text-2xl text-espresso"
+              className="font-display border-b border-espresso/10 py-3 text-xl text-espresso"
             >
               {n.label}
             </a>
@@ -164,12 +170,12 @@ export default function Header() {
           <a
             href="#enquiry"
             onClick={() => setOpen(false)}
-            className="tracked-sm mt-5 bg-espresso px-6 py-4 text-center text-[10px] text-cream"
+            className="tracked-sm mt-4 bg-espresso px-6 py-3.5 text-center text-[10px] text-cream"
           >
             Discuss Your Project
           </a>
 
-          <div className="mt-6 flex flex-col gap-1 border-t border-espresso/10 pt-5">
+          <div className="mt-4 flex flex-col gap-0.5 border-t border-espresso/10 pt-4">
             <a
               href={`tel:${site.phone.replace(/\s/g, "")}`}
               className="tracked-sm flex min-h-11 items-center gap-2.5 text-[10px] text-espresso/70"

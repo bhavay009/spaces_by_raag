@@ -30,6 +30,17 @@ html {
 html::-webkit-scrollbar { display: none; } /* Chrome, Safari */
 body { background: var(--color-cream); color: var(--color-espresso); font-family: var(--font-sans); overscroll-behavior-x: none; }
 
+/* Every interactive element needs a visible keyboard-focus indicator (WCAG
+   2.4.7); the form fields' `focus:outline-none` had removed the only one that
+   existed, leaving keyboard users with no focus feedback anywhere on the
+   site. :focus-visible only fires for keyboard/programmatic focus, not mouse
+   clicks, so this changes nothing for the vast majority of visitors — the
+   !important is needed solely to win over that single outline-none. */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 2px solid var(--color-bronze) !important;
+  outline-offset: 3px;
+}
+
 .tracked { letter-spacing: 0.42em; text-transform: uppercase; }
 .tracked-sm { letter-spacing: 0.22em; text-transform: uppercase; }
 .tracked-hero { letter-spacing: 0.2em; text-transform: uppercase; }
