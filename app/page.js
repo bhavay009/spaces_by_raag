@@ -81,7 +81,7 @@ export default function Home() {
                 >
                   <a
                     href="#enquiry"
-                    className="tracked-sm group relative overflow-hidden border border-cream/45 px-9 py-5 text-center text-[10px] text-cream transition-colors duration-500 hover:border-cream"
+                    className="tracked-sm group relative overflow-hidden border border-cream/45 px-9 py-5 text-center text-[10px] text-cream transition-colors duration-500 hover:border-cream active:scale-[0.97]"
                   >
                     <span className="absolute inset-0 -translate-y-full bg-cream transition-transform duration-500 ease-out group-hover:translate-y-0" />
                     <span className="relative transition-colors duration-500 group-hover:text-espresso">

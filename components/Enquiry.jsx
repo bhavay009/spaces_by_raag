@@ -2,8 +2,12 @@
 import { useState } from "react";
 import { budgets, site } from "@/lib/site";
 
+// text-[14px] under 16px makes iOS Safari zoom the whole page in on focus —
+// every field on this form used to trigger that. 16px on phones (dropping
+// back to 15px from md, where the zoom quirk doesn't apply) stops it without
+// changing how the form reads on desktop.
 const field =
-  "w-full border-b border-cream/25 bg-transparent px-0 py-2.5 text-[14px] text-cream placeholder:text-cream/55 transition-colors duration-400 focus:border-bronze focus:outline-none md:py-3.5 md:text-[15px]";
+  "w-full border-b border-cream/25 bg-transparent px-0 py-2.5 text-[16px] text-cream placeholder:text-cream/55 transition-colors duration-400 focus:border-bronze focus:outline-none md:py-3.5 md:text-[15px]";
 const label = "tracked-sm block text-[9px] text-cream/60";
 
 export default function Enquiry() {
@@ -59,7 +63,7 @@ export default function Enquiry() {
           </p>
           <a
             href={`tel:${site.phone.replace(/\s/g, "")}`}
-            className="tracked-sm mt-10 inline-block border border-cream/35 px-9 py-4.5 text-[10px] text-cream transition-colors duration-500 hover:bg-cream hover:text-espresso"
+            className="tracked-sm mt-10 inline-block border border-cream/35 px-9 py-4.5 text-[10px] text-cream transition-colors duration-500 hover:bg-cream hover:text-espresso active:scale-[0.97]"
           >
             Call {site.phone}
           </a>
@@ -173,7 +177,7 @@ export default function Enquiry() {
           <button
             type="submit"
             disabled={state === "sending"}
-            className="tracked-sm group relative mt-5 w-full overflow-hidden border border-cream/40 px-10 py-5 text-[10px] text-cream transition-colors duration-500 hover:border-cream disabled:opacity-55 sm:w-auto md:mt-11"
+            className="tracked-sm group relative mt-5 w-full overflow-hidden border border-cream/40 px-10 py-5 text-[10px] text-cream transition-colors duration-500 hover:border-cream disabled:opacity-55 sm:w-auto md:mt-11 active:scale-[0.97]"
           >
             <span className="absolute inset-0 -translate-y-full bg-cream transition-transform duration-500 ease-out group-hover:translate-y-0 group-disabled:translate-y-full" />
             <span className="relative transition-colors duration-500 group-hover:text-espresso">

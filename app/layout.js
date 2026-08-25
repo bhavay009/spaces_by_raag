@@ -53,7 +53,15 @@ export const metadata = {
     : {}),
 };
 
-export const viewport = { themeColor: "#3A2517" };
+// viewportFit: "cover" lets the page draw under the notch/home-indicator on
+// iPhone instead of leaving a bar of browser chrome there; env(safe-area-inset-*)
+// only has any effect once this is set.
+export const viewport = {
+  themeColor: "#3A2517",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export default function RootLayout({ children }) {
   return (

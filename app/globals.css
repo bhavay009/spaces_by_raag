@@ -30,6 +30,14 @@ html {
 html::-webkit-scrollbar { display: none; } /* Chrome, Safari */
 body { background: var(--color-cream); color: var(--color-espresso); font-family: var(--font-sans); overscroll-behavior-x: none; }
 
+/* Mobile Safari/Chrome paint a grey rectangle over whatever you tap; native
+   apps don't have that, so it always reads as "this is a website". Real
+   buttons/CTAs get their own `active:scale-*` feedback instead (applied
+   per-component, since most already carry a `transition-colors` utility and
+   a competing `transition` shorthand here would silently cancel it), so
+   removing the browser default here is a replacement, not a regression. */
+a, button { -webkit-tap-highlight-color: transparent; }
+
 /* Every interactive element needs a visible keyboard-focus indicator (WCAG
    2.4.7); the form fields' `focus:outline-none` had removed the only one that
    existed, leaving keyboard users with no focus feedback anywhere on the

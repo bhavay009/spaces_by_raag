@@ -22,24 +22,41 @@ export default function Services() {
           </p>
         </Reveal>
 
-        {/* Client asked for a tighter presentation. The service descriptions go:
-            the brief states no long service descriptions are required, and they
-            were the bulk of the height. Number, title and rule per cell keeps
-            all six services while roughly halving the section. Mobile runs two
-            columns instead of one — halves the row count again below sm. */}
-        <ul className="svc-grid mt-6 grid grid-cols-2 gap-px border-t border-espresso/12 bg-espresso/12 md:mt-10 lg:grid-cols-3">
+        {/* Client asked for a tighter presentation, so the phone row (<sm) is
+            untouched: stacked number-then-title, no description, two columns.
+            sm+ has room to spare, so each cell there becomes a small editorial
+            block — an italic display numeral, a larger title and a bronze
+            rule, with the service's one-line note reserved at a fixed height
+            and faded in on hover/focus rather than pushed in (so neighbouring
+            cells never reflow). */}
+        <ul className="svc-grid mt-6 grid grid-cols-2 gap-px border-t border-bronze/25 bg-bronze/18 md:mt-10 lg:grid-cols-3">
           {services.map((s, i) => (
             <Reveal
               key={s.n}
               as="li"
               delay={i * 60}
-              className="group relative flex flex-col items-start gap-1.5 bg-shell px-4 py-4 transition-colors duration-[420ms] ease-out hover:bg-cream sm:flex-row sm:items-baseline sm:gap-4 sm:px-0 sm:py-6 lg:py-7"
+              className="group relative flex flex-col items-start gap-1.5 bg-shell px-4 py-4 transition-colors duration-[420ms] ease-out hover:bg-cream focus-within:bg-cream sm:block sm:px-0 sm:py-8 lg:py-10"
             >
-              <span className="tracked-sm shrink-0 text-[9.5px] text-bronze-deep">{s.n}</span>
-              <h3 className="font-display text-[1.1rem] leading-[1.2] text-espresso transition-[color,transform] duration-[420ms] ease-[cubic-bezier(.22,.68,0,1)] group-hover:translate-x-1 group-hover:text-cognac sm:text-[1.35rem] md:text-[1.5rem]">
+              <span className="tracked-sm shrink-0 text-[9.5px] text-bronze-deep sm:hidden">{s.n}</span>
+
+              <span
+                aria-hidden="true"
+                className="font-display hidden text-[1.3rem] italic leading-none text-bronze-deep/75 transition-colors duration-[420ms] ease-out group-hover:text-cognac sm:block md:text-[1.5rem]"
+              >
+                {s.n}
+              </span>
+
+              <h3 className="font-display text-[1.1rem] leading-[1.2] text-espresso transition-[color,transform] duration-[420ms] ease-[cubic-bezier(.22,.68,0,1)] group-hover:translate-x-1 group-hover:text-cognac sm:mt-3 sm:text-[1.5rem] md:text-[1.7rem]">
                 {s.title}
               </h3>
-              <span className="ml-auto hidden h-px w-6 shrink-0 self-center bg-bronze/40 transition-all duration-[480ms] ease-[cubic-bezier(.22,.68,0,1)] group-hover:w-10 group-hover:bg-bronze-deep sm:block" />
+
+              <span className="mt-3 hidden h-px w-8 bg-bronze/40 transition-all duration-[480ms] ease-[cubic-bezier(.22,.68,0,1)] group-hover:w-12 group-hover:bg-bronze-deep sm:block" />
+
+              {s.note && (
+                <p className="font-display mt-3 hidden max-w-[230px] text-[13px] italic leading-[1.4] text-espresso/55 opacity-0 transition-opacity duration-[420ms] ease-out group-hover:opacity-100 group-focus-within:opacity-100 sm:block sm:min-h-[2.6rem] md:min-h-[2.2rem]">
+                  {s.note}
+                </p>
+              )}
             </Reveal>
           ))}
         </ul>

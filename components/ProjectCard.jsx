@@ -80,7 +80,7 @@ export default function ProjectCard({ p, i }) {
             aria-expanded={open}
             aria-controls={panelId}
             aria-label={`${open ? "Hide" : "Show"} details for ${p.name}`}
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-bronze/45 text-bronze-deep transition-colors duration-400 hover:border-bronze-deep hover:bg-bronze/10 md:hidden"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-bronze/45 text-bronze-deep transition-colors duration-400 hover:border-bronze-deep hover:bg-bronze/10 active:scale-90 md:hidden"
           >
             <svg
               viewBox="0 0 24 24"

@@ -34,6 +34,7 @@ export default function Header() {
 
   return (
     <header
+      style={{ paddingTop: "env(safe-area-inset-top)" }}
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,padding] duration-700 ease-out ${
         opaque ? "bg-cream/92 backdrop-blur-md py-4 shadow-[0_1px_0_rgba(58,37,23,.10)]"
           : "bg-transparent py-7"
@@ -118,7 +119,7 @@ export default function Header() {
           </a>
           <a
             href="#enquiry"
-            className={`tracked-sm hidden border px-7 py-3.5 text-[10px] transition-all duration-500 md:inline-block ${
+            className={`tracked-sm hidden min-h-11 items-center border px-7 py-3.5 text-[10px] transition-all duration-500 active:scale-[0.97] md:inline-flex ${
               opaque ? "border-espresso/25 text-espresso hover:bg-espresso hover:text-cream"
                 : "border-cream/40 text-cream hover:bg-cream hover:text-espresso"
             }`}
@@ -132,7 +133,7 @@ export default function Header() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            className="-mr-2 flex h-11 w-11 flex-col items-center justify-center gap-[5px] lg:hidden"
+            className="-mr-2 flex h-11 w-11 flex-col items-center justify-center gap-[5px] active:scale-90 lg:hidden"
           >
             <span className={`h-px w-6 transition-all duration-400 ${opaque ? "bg-espresso" : "bg-cream"} ${open ? "translate-y-[6px] rotate-45" : ""}`} />
             <span className={`h-px w-6 transition-all duration-400 ${opaque ? "bg-espresso" : "bg-cream"} ${open ? "opacity-0" : ""}`} />
@@ -170,7 +171,7 @@ export default function Header() {
           <a
             href="#enquiry"
             onClick={() => setOpen(false)}
-            className="tracked-sm mt-4 bg-espresso px-6 py-3.5 text-center text-[10px] text-cream"
+            className="tracked-sm mt-4 flex min-h-11 items-center justify-center bg-espresso px-6 py-3.5 text-center text-[10px] text-cream active:scale-[0.97]"
           >
             Discuss Your Project
           </a>
