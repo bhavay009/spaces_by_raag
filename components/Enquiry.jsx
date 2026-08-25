@@ -3,7 +3,7 @@ import { useState } from "react";
 import { budgets, site } from "@/lib/site";
 
 const field =
-  "w-full border-b border-cream/25 bg-transparent px-0 py-3.5 text-[15px] text-cream placeholder:text-cream/55 transition-colors duration-400 focus:border-bronze focus:outline-none";
+  "w-full border-b border-cream/25 bg-transparent px-0 py-2.5 text-[14px] text-cream placeholder:text-cream/55 transition-colors duration-400 focus:border-bronze focus:outline-none md:py-3.5 md:text-[15px]";
 const label = "tracked-sm block text-[9px] text-cream/60";
 
 export default function Enquiry() {
@@ -83,7 +83,7 @@ export default function Enquiry() {
             what it typically takes, and the next step.
           </p>
 
-          <div className="mt-6 space-y-3 border-t border-cream/12 pt-5 md:mt-12 md:space-y-4 md:pt-8">
+          <div className="mt-5 space-y-2.5 border-t border-cream/12 pt-4 md:mt-12 md:space-y-4 md:pt-8">
             <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="tracked-sm flex min-h-11 w-fit items-center text-[10px] text-cream/70 transition-colors duration-400 hover:text-bronze-ink">
               {site.phone}
             </a>
@@ -100,7 +100,10 @@ export default function Enquiry() {
             <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
           </div>
 
-          <div className="grid gap-x-10 gap-y-5 sm:grid-cols-2 sm:gap-y-9">
+          {/* Name/Phone and Email/Location pair up below sm too — four short
+              fields in two rows instead of four, which was most of why this
+              form ran so long on phones. sm+ is unchanged. */}
+          <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:gap-x-10 sm:gap-y-9">
             <div>
               <label className={label} htmlFor="name">Name *</label>
               <input id="name" name="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined} className={field} placeholder="Your full name" autoComplete="name" />
@@ -141,7 +144,7 @@ export default function Enquiry() {
               )}
             </div>
 
-            <div className="sm:col-span-2">
+            <div className="col-span-2">
               <label className={label} htmlFor="budget">Approximate Project Budget</label>
               <select id="budget" name="budget" defaultValue="" className={`${field} appearance-none`}>
                 <option value="" className="bg-espresso">Select a range</option>
@@ -151,7 +154,7 @@ export default function Enquiry() {
               </select>
             </div>
 
-            <div className="sm:col-span-2">
+            <div className="col-span-2">
               <label className={label} htmlFor="details">Tell Us About Your Project</label>
               <textarea
                 id="details"
@@ -170,7 +173,7 @@ export default function Enquiry() {
           <button
             type="submit"
             disabled={state === "sending"}
-            className="tracked-sm group relative mt-7 w-full overflow-hidden border border-cream/40 px-10 py-5 text-[10px] text-cream transition-colors duration-500 hover:border-cream disabled:opacity-55 sm:w-auto md:mt-11"
+            className="tracked-sm group relative mt-5 w-full overflow-hidden border border-cream/40 px-10 py-5 text-[10px] text-cream transition-colors duration-500 hover:border-cream disabled:opacity-55 sm:w-auto md:mt-11"
           >
             <span className="absolute inset-0 -translate-y-full bg-cream transition-transform duration-500 ease-out group-hover:translate-y-0 group-disabled:translate-y-full" />
             <span className="relative transition-colors duration-500 group-hover:text-espresso">
