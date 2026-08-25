@@ -69,21 +69,21 @@ export default function Enquiry() {
   }
 
   return (
-    <section id="enquiry" className="scroll-mt-24 bg-espresso px-6 py-16 md:px-12 md:py-24">
-      <div className="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-12 lg:gap-20">
+    <section id="enquiry" className="scroll-mt-24 bg-espresso px-6 py-12 md:px-12 md:py-24">
+      <div className="mx-auto grid max-w-[1400px] gap-8 lg:grid-cols-12 lg:gap-20">
         <div className="lg:col-span-5">
           <p className="tracked text-[9px] text-bronze-ink md:text-[10px]">Project Enquiry</p>
-          <h2 className="font-display mt-6 text-[clamp(2.1rem,4.6vw,3.6rem)] leading-[1.12] tracking-[-0.015em] text-cream">
+          <h2 className="font-display mt-3 text-[clamp(2.1rem,4.6vw,3.6rem)] leading-[1.12] tracking-[-0.015em] text-cream md:mt-6">
             Tell us about
             <br />
             <span className="italic text-bronze">your space.</span>
           </h2>
-          <p className="mt-7 max-w-sm text-[15px] leading-[1.85] text-cream/60">
+          <p className="mt-4 max-w-sm text-[14px] leading-[1.6] text-cream/60 md:mt-7 md:text-[15px] md:leading-[1.85]">
             Share a few details and we&rsquo;ll come back with how we&rsquo;d approach it,
             what it typically takes, and the next step.
           </p>
 
-          <div className="mt-12 space-y-4 border-t border-cream/12 pt-8">
+          <div className="mt-6 space-y-3 border-t border-cream/12 pt-5 md:mt-12 md:space-y-4 md:pt-8">
             <a href={`tel:${site.phone.replace(/\s/g, "")}`} className="tracked-sm flex min-h-11 w-fit items-center text-[10px] text-cream/70 transition-colors duration-400 hover:text-bronze-ink">
               {site.phone}
             </a>
@@ -100,7 +100,7 @@ export default function Enquiry() {
             <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
           </div>
 
-          <div className="grid gap-x-10 gap-y-9 sm:grid-cols-2">
+          <div className="grid gap-x-10 gap-y-5 sm:grid-cols-2 sm:gap-y-9">
             <div>
               <label className={label} htmlFor="name">Name *</label>
               <input id="name" name="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined} className={field} placeholder="Your full name" autoComplete="name" />
@@ -170,7 +170,7 @@ export default function Enquiry() {
           <button
             type="submit"
             disabled={state === "sending"}
-            className="tracked-sm group relative mt-11 w-full overflow-hidden border border-cream/40 px-10 py-5 text-[10px] text-cream transition-colors duration-500 hover:border-cream disabled:opacity-55 sm:w-auto"
+            className="tracked-sm group relative mt-7 w-full overflow-hidden border border-cream/40 px-10 py-5 text-[10px] text-cream transition-colors duration-500 hover:border-cream disabled:opacity-55 sm:w-auto md:mt-11"
           >
             <span className="absolute inset-0 -translate-y-full bg-cream transition-transform duration-500 ease-out group-hover:translate-y-0 group-disabled:translate-y-full" />
             <span className="relative transition-colors duration-500 group-hover:text-espresso">

@@ -131,11 +131,11 @@ export default function Home() {
         </section>
 
         {/* ————————————— ABOUT + CREDENTIALS ————————————— */}
-        <section id="about" className="grain-soft relative bg-cream px-6 py-16 md:px-12 md:py-24">
-          <div className="mx-auto grid max-w-[1400px] gap-14 lg:grid-cols-12 lg:gap-20">
+        <section id="about" className="grain-soft relative bg-cream px-6 py-12 md:px-12 md:py-24">
+          <div className="mx-auto grid max-w-[1400px] gap-8 lg:grid-cols-12 lg:gap-20">
             <div className="lg:col-span-5">
               <p className="tracked text-[9px] text-bronze-deep md:text-[10px]">The Studio</p>
-              <div className="group relative mt-10 aspect-[4/5] w-full overflow-hidden bg-sand shadow-[0_18px_50px_-30px_rgba(26,17,9,.55)]">
+              <div className="group relative mt-5 aspect-[16/10] w-full overflow-hidden bg-sand shadow-[0_18px_50px_-30px_rgba(26,17,9,.55)] md:mt-10 md:aspect-[4/5]">
                 <Image
                   src="/images/vilasa-1.jpg"
                   alt="Double-height living space with woven pendant lighting and layered natural textures in a villa in Gurgaon"
@@ -153,7 +153,7 @@ export default function Home() {
                 <span className="italic text-cognac">Others are deeply felt.</span>
               </h2>
 
-              <div className="mt-9 max-w-xl space-y-5 text-[15px] leading-[1.85] text-espresso/72 md:text-[16.5px]">
+              <div className="mt-5 max-w-xl space-y-4 text-[14.5px] leading-[1.65] text-espresso/72 md:mt-9 md:space-y-5 md:text-[16.5px] md:leading-[1.85]">
                 <p>
                   Spaces by Raag is a boutique interior design studio working across Gurgaon,
                   Delhi, Noida and Faridabad — crafting timeless residential and boutique
@@ -167,20 +167,20 @@ export default function Home() {
 
               <a
                 href="#enquiry"
-                className="tracked-sm group mt-11 inline-flex min-h-11 w-fit items-center gap-4 border-b border-espresso/25 pb-2.5 text-[10px] text-espresso transition-colors duration-500 hover:border-bronze hover:text-cognac"
+                className="tracked-sm group mt-7 inline-flex min-h-11 w-fit items-center gap-4 border-b border-espresso/25 pb-2.5 text-[10px] text-espresso transition-colors duration-500 hover:border-bronze hover:text-cognac md:mt-11"
               >
                 Discuss Your Project
                 <span className="transition-transform duration-500 ease-out group-hover:translate-x-1.5">→</span>
               </a>
 
               {/* credentials */}
-              <dl className="mt-16 grid grid-cols-1 gap-px border-t border-espresso/12 bg-espresso/12 sm:grid-cols-3">
+              <dl className="mt-9 grid grid-cols-3 gap-px border-t border-espresso/12 bg-espresso/12 md:mt-16">
                 {credentials.map((c) => (
-                  <div key={c.value} className="bg-cream px-1 pt-8 sm:px-6 sm:text-left">
-                    <dt className="font-display text-[clamp(2.4rem,5vw,3.4rem)] leading-none text-cognac">
+                  <div key={c.value} className="bg-cream px-1 pt-5 sm:px-6 sm:text-left md:pt-8">
+                    <dt className="font-display text-[clamp(1.5rem,5vw,3.4rem)] leading-none text-cognac">
                       {c.value}
                     </dt>
-                    <dd className="tracked-sm mt-3.5 text-[9.5px] leading-[1.9] text-espresso/70 sm:min-h-[3.8em]">
+                    <dd className="tracked-sm mt-2 text-[8px] leading-[1.5] text-espresso/70 sm:min-h-[3.8em] md:mt-3.5 md:text-[9.5px] md:leading-[1.9]">
                       {c.label}
                     </dd>
                   </div>

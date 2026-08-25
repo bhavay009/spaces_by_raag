@@ -93,7 +93,7 @@ export default function ParallaxImage({ src, alt, sizes, strength = 18 }) {
   return (
     <div
       ref={frame}
-      className="group relative aspect-[4/3] w-full overflow-hidden bg-sand shadow-[0_18px_50px_-30px_rgba(26,17,9,.55)]"
+      className="group relative aspect-[3/4] w-full overflow-hidden bg-sand shadow-[0_18px_50px_-30px_rgba(26,17,9,.55)] md:aspect-[4/3]"
     >
       <div
         ref={drift}

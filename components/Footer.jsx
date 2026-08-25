@@ -2,20 +2,20 @@ import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="scroll-mt-24 bg-ink px-6 pb-10 pt-24 md:px-12 md:pt-32">
+    <footer id="contact" className="scroll-mt-24 bg-ink px-6 pb-10 pt-14 md:px-12 md:pt-32">
       <div className="mx-auto max-w-[1400px]">
-        <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
+        <div className="grid gap-7 md:gap-14 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-5">
             <p className="tracked text-[9px] text-bronze-ink md:text-[10px]">Spaces by</p>
             <p className="font-display mt-1.5 text-[clamp(3rem,7vw,5rem)] leading-none text-cream">
               Raag
             </p>
-            <p className="font-display mt-7 max-w-xs text-[1.25rem] italic leading-[1.5] text-cream/55">
+            <p className="font-display mt-4 max-w-xs text-[1.15rem] italic leading-[1.4] text-cream/55 md:mt-7 md:text-[1.25rem] md:leading-[1.5]">
               Creating spaces that feel uniquely yours.
             </p>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-2 lg:col-span-7 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-6 sm:gap-10 lg:col-span-7 lg:grid-cols-3">
             <div>
               <p className="tracked-sm text-[9px] text-cream/55">Call</p>
               <a
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col gap-4 border-t border-cream/12 pt-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-4 border-t border-cream/12 pt-6 sm:flex-row sm:items-center sm:justify-between md:mt-20 md:pt-8">
           <p className="tracked-sm text-[9px] text-cream/55">
             {site.location} — Residential &amp; Office Interiors
           </p>
