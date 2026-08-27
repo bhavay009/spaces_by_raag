@@ -34,8 +34,8 @@ export default function Header() {
 
   return (
     <header
-      style={{ paddingTop: "env(safe-area-inset-top)" }}
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,padding] duration-700 ease-out ${
+      style={{ top: "calc(env(safe-area-inset-top) + 0.5rem)" }}
+      className={`fixed inset-x-0 z-50 transition-[background-color,backdrop-filter,padding] duration-700 ease-out ${
         opaque ? "bg-cream/92 backdrop-blur-md py-4 shadow-[0_1px_0_rgba(58,37,23,.10)]"
           : "bg-transparent py-7"
       }`}
