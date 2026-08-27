@@ -32,6 +32,57 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Every in-page link (nav, hero CTAs, footer, etc.) is a plain `<a href="#…">`,
+  // so the browser's own `scroll-behavior: smooth` (in globals.css) was doing the
+  // animating — but its duration scales with distance and reads as sluggish on a
+  // page this long. Intercepting the click here, once, replaces it with a fixed
+  // 500ms eased scroll for every anchor link on the site without touching each
+  // one individually. scroll-mt-* on the section elements is still respected by
+  // reading their computed scroll-margin-top.
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const DURATION = 500;
+    const easeOutCubic = (t) => 1 - (1 - t) ** 3;
+
+    const onClick = (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute("href").slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+
+      const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+      const startY = window.scrollY;
+      const targetY = Math.max(
+        0,
+        target.getBoundingClientRect().top + startY - margin
+      );
+
+      if (reduceMotion.matches) {
+        window.scrollTo({ top: targetY, behavior: "instant" });
+        return;
+      }
+
+      // behavior: "instant" on every frame — without it, scrollTo() defers to
+      // the page's own CSS `scroll-behavior: smooth`, which kicks off its own
+      // (slow) animation toward each intermediate position and fights this
+      // rAF loop instead of landing where it's told.
+      const distance = targetY - startY;
+      const startTime = performance.now();
+      const step = (now) => {
+        const t = Math.min((now - startTime) / DURATION, 1);
+        window.scrollTo({ top: startY + distance * easeOutCubic(t), behavior: "instant" });
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
   return (
     <header
       style={{ top: "calc(env(safe-area-inset-top) + 0.5rem)" }}
