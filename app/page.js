@@ -134,11 +134,10 @@ export default function Home() {
         <section id="about" className="grain-soft relative bg-cream px-6 py-12 md:px-12 md:py-24">
           <div className="mx-auto grid max-w-[1400px] gap-8 lg:grid-cols-12 lg:gap-20">
             <div className="lg:col-span-5">
-              <p className="tracked text-[9px] text-bronze-deep md:text-[10px]">The Studio</p>
-              <div className="group relative mt-5 aspect-[16/10] w-full overflow-hidden bg-sand shadow-[0_18px_50px_-30px_rgba(26,17,9,.55)] md:mt-10 md:aspect-[4/5]">
+              <div className="group relative aspect-[16/10] w-full overflow-hidden bg-sand shadow-[0_18px_50px_-30px_rgba(26,17,9,.55)] md:aspect-[4/5]">
                 <Image
-                  src="/images/vilasa-1.jpg"
-                  alt="Double-height living space with woven pendant lighting and layered natural textures in a villa in Gurgaon"
+                  src="/images/about-lounge.jpg"
+                  alt="Arched lounge and dining area with rattan pendant lighting in a Spaces by Raag interior"
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover transition-transform duration-[1.8s] ease-[cubic-bezier(.22,.68,0,1)] group-hover:scale-[1.045]"
