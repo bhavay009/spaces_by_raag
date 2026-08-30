@@ -1,5 +1,3 @@
-import nodemailer from "nodemailer";
-
 export const runtime = "nodejs";
 
 // Very small in-memory rate limit. Enough to blunt casual abuse on a single instance.
@@ -33,9 +31,6 @@ function clientIp(req) {
 // Generous ceilings — a real enquiry never approaches these. They exist so the
 // endpoint cannot be used to pump unbounded content at the studio's mailbox.
 const LIMITS = { name: 120, phone: 40, email: 200, location: 160, budget: 40, details: 4000 };
-
-const esc = (s = "") =>
-  String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 export async function POST(req) {
   try {
@@ -73,55 +68,32 @@ export async function POST(req) {
       return Response.json({ error: "Please check the email address." }, { status: 400 });
     }
 
-    const rows = [
-      ["Name", name],
-      ["Phone", phone],
-      ["Email", email || "—"],
-      ["Project Location", location],
-      ["Approx. Budget", budget || "—"],
-      ["Project Details", details || "—"],
-    ];
+    // Formspree owns the actual email formatting/delivery; this route stays
+    // the authoritative gate (rate limit, honeypot, field validation) in
+    // front of it. The endpoint ID isn't a secret — Formspree's protection is
+    // domain-allowlisting + its own spam filtering, not URL secrecy — but an
+    // env var still overrides it without a code change if it's ever rotated.
+    const endpoint = process.env.FORMSPREE_ENDPOINT || "https://formspree.io/f/mzebzqgr";
 
-    const html = `
-      <div style="font-family:Georgia,serif;background:#F7F2EA;padding:32px;color:#3A2517">
-        <p style="letter-spacing:.28em;text-transform:uppercase;font-size:10px;color:#B08356;margin:0">Spaces by Raag</p>
-        <h2 style="font-weight:400;font-size:24px;margin:10px 0 24px">New website enquiry</h2>
-        <table style="border-collapse:collapse;width:100%;font-family:Helvetica,Arial,sans-serif;font-size:14px">
-          ${rows
-            .map(
-              ([k, v]) =>
-                `<tr><td style="padding:10px 0;border-bottom:1px solid #e3d9c9;color:#8a7461;width:170px;vertical-align:top">${k}</td><td style="padding:10px 0;border-bottom:1px solid #e3d9c9;white-space:pre-wrap">${esc(v)}</td></tr>`
-            )
-            .join("")}
-        </table>
-      </div>`;
+    const fsRes = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        name,
+        phone,
+        email: email || undefined,
+        location,
+        budget: budget || undefined,
+        details: details || undefined,
+        _subject: `New enquiry — ${name} (${location})`,
+        _replyto: email || undefined,
+      }),
+    });
 
-    const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, ENQUIRY_TO, ENQUIRY_FROM } = process.env;
-
-    // Without SMTP configured the lead is logged, not lost — and the visitor still
-    // gets a success state. Configure the env vars to switch email on.
-    if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !ENQUIRY_TO) {
-      console.warn("[enquiry] SMTP not configured — lead captured in logs only:", {
-        name, phone, email, location, budget, details,
-      });
+    if (!fsRes.ok) {
+      console.error("[enquiry] Formspree rejected the submission:", fsRes.status, await fsRes.text());
       return Response.json({ ok: true, delivered: false });
     }
-
-    const transport = nodemailer.createTransport({
-      host: SMTP_HOST,
-      port: Number(SMTP_PORT) || 587,
-      secure: Number(SMTP_PORT) === 465,
-      auth: { user: SMTP_USER, pass: SMTP_PASS },
-    });
-
-    await transport.sendMail({
-      from: ENQUIRY_FROM || `"Spaces by Raag Website" <${SMTP_USER}>`,
-      to: ENQUIRY_TO,
-      replyTo: email || undefined,
-      subject: `New enquiry — ${name} (${location})`,
-      html,
-      text: rows.map(([k, v]) => `${k}: ${v}`).join("\n"),
-    });
 
     return Response.json({ ok: true, delivered: true });
   } catch (err) {
