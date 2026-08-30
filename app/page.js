@@ -28,14 +28,13 @@ export default function Home() {
             sizes="100vw"
             className="kenburns object-cover"
           />
-          {/* warm cinematic grade */}
-          {/* One even scrim across the whole frame. No directional zoning and no
-              nav band — those read as patches. A wide, shallow vignette keeps the
-              surroundings a touch darker than the architecture without becoming a
-              visible layer of its own. */}
-          <div className="absolute inset-0 bg-ink/70" />
-          <div className="absolute inset-0 bg-[radial-gradient(125%_115%_at_50%_45%,transparent_35%,rgba(26,17,9,.30)_100%)]" />
-          <div className="absolute inset-0 bg-cognac/10 mix-blend-overlay" />
+          {/* Neutral warm-black scrim only — ~35% flat, so architecture, windows,
+              planting and the warm facade lighting all stay clearly visible. No
+              cognac/brown tint layer: that was pushing the whole frame toward
+              brown rather than reading as photographic dusk light. The vignette
+              stays for edge falloff only, at a fraction of its previous strength. */}
+          <div className="absolute inset-0 bg-ink/35" />
+          <div className="absolute inset-0 bg-[radial-gradient(125%_115%_at_50%_45%,transparent_45%,rgba(26,17,9,.16)_100%)]" />
 
           {/* eyebrow */}
           <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6 md:px-12">
