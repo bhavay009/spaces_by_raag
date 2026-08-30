@@ -10,6 +10,9 @@
   --color-cognac:   #6B4429;
   --color-espresso: #3A2517;
   --color-ink:      #1A1109;
+  /* Warm terracotta, not a stock red — form-error text needs to read as an
+     alert against bg-espresso without breaking into an off-palette hue. */
+  --color-error:    #C97B54;
 
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-sans:    var(--font-jost), ui-sans-serif, system-ui, sans-serif;

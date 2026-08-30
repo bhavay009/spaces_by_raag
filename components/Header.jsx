@@ -222,7 +222,7 @@ export default function Header() {
           <a
             href="#enquiry"
             onClick={() => setOpen(false)}
-            className="tracked-sm mt-4 flex min-h-11 items-center justify-center bg-espresso px-6 py-3.5 text-center text-[10px] text-cream active:scale-[0.97]"
+            className="tracked-sm mt-4 flex min-h-11 items-center justify-center border border-espresso/25 px-6 py-3.5 text-center text-[10px] text-espresso transition-colors duration-500 hover:bg-espresso hover:text-cream active:scale-[0.97]"
           >
             Discuss Your Project
           </a>

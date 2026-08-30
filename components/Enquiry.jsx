@@ -112,7 +112,7 @@ export default function Enquiry() {
               <label className={label} htmlFor="name">Name *</label>
               <input id="name" name="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined} className={field} placeholder="Your full name" autoComplete="name" />
               {errors.name && (
-                <p id="name-error" role="alert" className="mt-2 text-[12px] text-[#E8A87C]">
+                <p id="name-error" role="alert" className="mt-2 text-[12px] text-error">
                   {errors.name}
                 </p>
               )}
@@ -122,7 +122,7 @@ export default function Enquiry() {
               <label className={label} htmlFor="phone">Phone Number *</label>
               <input id="phone" name="phone" aria-invalid={!!errors.phone} aria-describedby={errors.phone ? "phone-error" : undefined} type="tel" className={field} placeholder="+91" autoComplete="tel" />
               {errors.phone && (
-                <p id="phone-error" role="alert" className="mt-2 text-[12px] text-[#E8A87C]">
+                <p id="phone-error" role="alert" className="mt-2 text-[12px] text-error">
                   {errors.phone}
                 </p>
               )}
@@ -132,7 +132,7 @@ export default function Enquiry() {
               <label className={label} htmlFor="email">Email Address</label>
               <input id="email" name="email" aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} type="email" className={field} placeholder="Optional" autoComplete="email" />
               {errors.email && (
-                <p id="email-error" role="alert" className="mt-2 text-[12px] text-[#E8A87C]">
+                <p id="email-error" role="alert" className="mt-2 text-[12px] text-error">
                   {errors.email}
                 </p>
               )}
@@ -142,7 +142,7 @@ export default function Enquiry() {
               <label className={label} htmlFor="location">Project Location *</label>
               <input id="location" name="location" aria-invalid={!!errors.location} aria-describedby={errors.location ? "location-error" : undefined} className={field} placeholder="Gurgaon, Delhi, Noida…" />
               {errors.location && (
-                <p id="location-error" role="alert" className="mt-2 text-[12px] text-[#E8A87C]">
+                <p id="location-error" role="alert" className="mt-2 text-[12px] text-error">
                   {errors.location}
                 </p>
               )}
@@ -171,7 +171,7 @@ export default function Enquiry() {
           </div>
 
           {state === "error" && (
-            <p role="alert" className="mt-7 text-[13.5px] text-[#E8A87C]">{message}</p>
+            <p role="alert" className="mt-7 text-[13.5px] text-error">{message}</p>
           )}
 
           <button
