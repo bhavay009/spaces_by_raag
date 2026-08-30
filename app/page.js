@@ -10,6 +10,7 @@ import Work from "@/components/Work";
 import Enquiry from "@/components/Enquiry";
 import Founder from "@/components/Founder";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { site, strip, credentials } from "@/lib/site";
 
 export default function Home() {
@@ -195,6 +196,7 @@ export default function Home() {
         <Founder />
       </main>
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 
 /**
@@ -25,7 +26,13 @@ export default function Lightbox({ images, index, alt, onClose, onNavigate }) {
 
   const src = images[index];
 
-  return (
+  // Portalled straight to <body>: rendered in place, this dialog would sit inside
+  // a `.grain-soft` section's stacking context (that class's `> *` rule gives its
+  // children `position: relative; z-index: 1` so section content stays above the
+  // grain texture). That traps this dialog's own z-index below the fixed header's
+  // z-50 no matter how high it's set — the header would stay visible on top of a
+  // "full-screen" viewer. A body-level portal escapes that ancestor entirely.
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
@@ -94,6 +101,7 @@ export default function Lightbox({ images, index, alt, onClose, onNavigate }) {
           {index + 1} / {images.length}
         </p>
       )}
-    </div>
+    </div>,
+    document.body
   );
 }
