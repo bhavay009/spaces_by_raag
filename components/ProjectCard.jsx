@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Reveal from "./Reveal";
 import ParallaxImage from "./ParallaxImage";
+import Lightbox from "./Lightbox";
 
 function Meta({ label, value, className = "" }) {
   if (!value) return null;
@@ -30,6 +31,7 @@ function Meta({ label, value, className = "" }) {
  */
 export default function ProjectCard({ p, i }) {
   const [open, setOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(null);
   const flip = i % 2 === 1;
   const [lead, ...rest] = p.images;
   const panelId = `project-${p.slug}-detail`;
@@ -42,11 +44,18 @@ export default function ProjectCard({ p, i }) {
           flip ? "md:order-2 lg:order-2 lg:col-start-6" : ""
         }`}
       >
-        <ParallaxImage
-          src={`/images/${lead}.jpg`}
-          alt={p.alt}
-          sizes="(max-width: 767px) 92px, (max-width: 1024px) 100vw, 58vw"
-        />
+        <button
+          type="button"
+          onClick={() => setLightboxIndex(0)}
+          aria-label={`View larger images of ${p.name}`}
+          className="block w-full text-left"
+        >
+          <ParallaxImage
+            src={`/images/${lead}.jpg`}
+            alt={p.alt}
+            sizes="(max-width: 767px) 92px, (max-width: 1024px) 100vw, 58vw"
+          />
+        </button>
       </Reveal>
 
       {/* copy */}
@@ -115,8 +124,11 @@ export default function ProjectCard({ p, i }) {
           {rest.length > 0 && (
             <div className="mt-3 grid grid-cols-3 gap-1.5 md:mt-8 md:gap-3">
               {rest.slice(0, 3).map((img, k) => (
-                <div
+                <button
                   key={img}
+                  type="button"
+                  onClick={() => setLightboxIndex(k + 1)}
+                  aria-label={`View larger image of ${p.name}, detail ${k + 2}`}
                   className="group/thumb relative aspect-[4/3] overflow-hidden bg-sand"
                 >
                   <Image
@@ -128,12 +140,24 @@ export default function ProjectCard({ p, i }) {
                     quality={90}
                     className="object-cover transition-transform duration-[1.6s] ease-[cubic-bezier(.22,.68,0,1)] group-hover/thumb:scale-[1.07]"
                   />
-                </div>
+                </button>
               ))}
             </div>
           )}
         </div>
       </Reveal>
+
+      {lightboxIndex !== null && (
+        <Lightbox
+          images={p.images}
+          index={lightboxIndex}
+          alt={p.alt}
+          onClose={() => setLightboxIndex(null)}
+          onNavigate={(delta) =>
+            setLightboxIndex((idx) => (idx + delta + p.images.length) % p.images.length)
+          }
+        />
+      )}
     </article>
   );
 }

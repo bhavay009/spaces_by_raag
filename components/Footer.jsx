@@ -50,7 +50,7 @@ export default function Footer() {
 
         <div className="mt-7 flex flex-col gap-3 border-t border-cream/12 pt-5 sm:flex-row sm:items-center sm:justify-between md:mt-12 md:gap-4 md:pt-6">
           <p className="tracked-sm text-[9px] text-cream/55">
-            {site.location} — Residential &amp; Office Interiors
+            {site.location} — {site.locationScope}
           </p>
           <p className="tracked-sm text-[9px] text-cream/50">
             © {new Date().getFullYear()} {site.name}

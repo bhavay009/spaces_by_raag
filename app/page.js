@@ -41,7 +41,7 @@ export default function Home() {
           <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6 md:px-12">
             <div className="rise pt-32 md:pt-36" style={{ animationDelay: ".35s" }}>
               <p className="tracked-hero text-[9px] text-cream/90 md:text-[10px] [text-shadow:0_1px_14px_rgba(26,17,9,.92)]">
-                {site.location} — Residential &amp; Office Interiors
+                {site.location} — {site.locationScope}
               </p>
             </div>
 
