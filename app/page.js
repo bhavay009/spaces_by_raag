@@ -26,6 +26,7 @@ export default function Home() {
             fill
             priority
             sizes="100vw"
+            quality={90}
             className="kenburns object-cover"
           />
           {/* Neutral warm-black scrim only — ~35% flat, so architecture, windows,
