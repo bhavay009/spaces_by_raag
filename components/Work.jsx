@@ -28,13 +28,27 @@ export default function Work() {
           ))}
         </ul>
 
-        <div className="mt-10 border-t border-espresso/10 pt-6 text-center md:mt-16 md:pt-8">
+        <div className="mt-10 flex justify-center border-t border-espresso/10 pt-8 md:mt-16 md:pt-12">
           <a
             href="https://www.instagram.com/reel/DAu61V8M5my/"
             target="_blank"
             rel="noopener noreferrer"
-            className="tracked-sm group inline-flex min-h-11 items-center gap-2 text-[10px] text-espresso/70 transition-colors duration-400 hover:text-cognac"
+            className="group inline-flex items-center gap-3 rounded-full border border-bronze/55 bg-cream px-6 py-3.5 text-[12px] font-medium text-espresso shadow-[0_14px_36px_-20px_rgba(26,17,9,.45)] transition-all duration-400 hover:border-bronze hover:bg-bronze hover:text-cream md:px-7 md:py-4 md:text-[13.5px]"
           >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              className="h-[18px] w-[18px] shrink-0"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none" />
+            </svg>
             Hear what a client had to say, on Instagram
             <span className="transition-transform duration-500 ease-out group-hover:translate-x-1.5">→</span>
           </a>
